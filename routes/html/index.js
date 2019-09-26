@@ -12,11 +12,4 @@ router.get("/saved", function (req, res) {
 });
 
 
-router.get("/new", function(req, res){
-    db.Note.create({body:"test", article:2}).then(function(data){
-        console.log(data)
-        res.json(data);
-    })
-})
-
 module.exports = router
