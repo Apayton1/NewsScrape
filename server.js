@@ -1,11 +1,14 @@
 // var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 // var mongoConnectionString = "mongodb://user1:password1@ds151486.mlab.com:51486/heroku_sgxx9tv6";
 // var mongoConnectionString = "mongodb://heroku_sgxx9tv6:lbod07pqq8e0rthvssq0jee8q0@ds151486.mlab.com:51486/heroku_sgxx9tv6";
-
+require('dotenv').config();
 var mongoose = require("mongoose");
 var express = require("express");
+var request = require("request");
 var mongojs = require("mongojs");
 var path = require("path");
+var cheerio = require("cheerio");
+const bodyParser = require("body-parser");
 
 var PORT = process.env.PORT || 3000;
 
