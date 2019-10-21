@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, './public')));
 
 app.use(routes)
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_sgxx9tv6:lbod07pqq8e0rthvssq0jee8q0@ds151486.mlab.com:51486/heroku_sgxx9tv6";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_lwh2rnl4:a0qf0tdu5r50eqah6loim9qfrs@ds137498.mlab.com:37498/heroku_lwh2rnl4";
 
 mongoose.connect(MONGODB_URI);
 
