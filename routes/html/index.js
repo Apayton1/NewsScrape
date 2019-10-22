@@ -23,7 +23,7 @@ router.get("/main.html", function (req, res) {
     router.get("/scrape", (function (req, res) {
         console.log("Inside Scrape1");
         axios.get("https://www.forbes.com/forbeswomen/#351c98f2621e").then(function (response, err) {
-            // console.log("SCRAPED ARTICLES HERE ------------------" + response.data);
+            console.log("SCRAPED ARTICLES HERE ------------------" + response.data);
             // console.log(response.data);
             if(err){
                 console.log(err);
