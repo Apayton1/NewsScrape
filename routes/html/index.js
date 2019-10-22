@@ -66,7 +66,7 @@ router.get("/main.html", function (req, res) {
 
         });
 
-        res.send("Scrape Complete");
+        res.json(dbArticle);
     }))
 
 
