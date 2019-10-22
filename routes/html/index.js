@@ -20,7 +20,7 @@ router.get("/main.html", function (req, res) {
 // router.get("/scrape", function (req, res) {
 //     console.log("inside scrape2")
 // res.sendFile(path.join(__dirname, "../../public/html/scrape.html"))
-router.get("/scrape", (function (req, res) {
+router.get("/scrape", function (req, res) {
     console.log("Inside Scrape1");
     axios.get("https://www.forbes.com/forbeswomen/#351c98f2621e").then(function (response, err) {
         // console.log("SCRAPED ARTICLES HERE ------------------" + response.data);
@@ -33,8 +33,10 @@ router.get("/scrape", (function (req, res) {
         var $ = cheerio.load(response.data);
         console.log("LOADED")
 
+        const myData = [];
+
         $("div.stream-item__text").each(function (i, element) {
-            const myData = [];
+            
 
             const link = $(element).find("a").attr("href");
             // console.log(myData.link);
@@ -50,34 +52,28 @@ router.get("/scrape", (function (req, res) {
                 summary: summary
             });
 
-            console.log(myData);
+            // console.log(myData);
 
-            console.log("this is my data", myData);
-            db.Article.create(myData)
-            .then(function( dbArticle ) {
+            // console.log("this is my data", myData);
+            
+            // return myData;
+        });
 
+        db.Article.insertMany(myData)
+            .then(function( myData ) {
 
-                $("#articleTable").append(
-                    '<tr>' + 
-                      '<td>' + title + '</td>' + 
-                      '<td>' + summary + '</td>' + 
-                      '<td>' + link + '</td>' + 
-                     
-                    '</tr>'
-                  );
-                
+                res.json(myData);
+                // console.log(myData);                
             })
             .catch(function( err ) {
                 console.log( err );
                 // return res.json( err );
             });
             
-            return myData;
-        });
     });
 
-    res.send("Scrape Complete2");
-}))
+    // res.send("Scrape Complete2");
+})
 
 
 router.get( "/all", function( req, res ) {
