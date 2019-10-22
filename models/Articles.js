@@ -8,12 +8,12 @@ const articleSchema = new Schema({
         unique:true,
     },
     
-    url: {
+    link: {
         type: String,
         required: true,
     },
 
-    description: {
+    summary: {
         type: String,
         required: true,
     },
